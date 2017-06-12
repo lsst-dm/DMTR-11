@@ -1,0 +1,142 @@
+\section{Characterisation Measurements for 11.0 (Summer
+2015)}\label{characterisation-measurements-for-11.0-summer-2015}
+
+Starting from Summer 2015, administrative ("cycle") releases are
+accompanied by a measurements report characterising the current
+performance. Metrics included in these reports are expected to increase
+in number and sophistication at subsequent releases. This brief report
+describe measurements of interest that were carried out.
+
+\subsection{Summary of Photometric Repeatability
+Measurements}\label{summary-of-photometric-repeatability-measurements}
+
+\emph{Submitted by \href{file:////display/~jbosch}{Jim Bosch}}
+
+This dataset is a selection of i-band HyperSuprime-Cam engineering data
+taken in the SDSS Stripe 82 region. This dataset consists of 30s
+exposures, so it is somewhat similar to projected LSST data in depth.
+Our current calibration approach has many limitations relative to what
+we ultimately plan to implement for LSST:
+
+\begin{itemize}
+\item
+  There's currently no relative calibration being run at all.
+\item
+  We have only limited correction for chromatic effects.
+\item
+  There's's currently no allowance for zeropoint variations smaller than
+  the scale of a CCD
+\item
+  We also use a much simpler sample selection than that proposed by the
+  SRD
+\end{itemize}
+
+\emph{~~~} Annotated code to compute the metrics can be found at
+\url{https://github.com/lsst/afw/blob/tickets/DM-3896/examples/repeatability.ipynb}.
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\textbf{Metric Characterised} & \textbf{Metric Ref} & \textbf{Target} &
+\textbf{Measured Value} & \textbf{Measurement Method}\tabularnewline
+\midrule
+\endhead
+Photometric repeatability (procCalRep) &
+\href{https://jira.lsstcorp.org/browser/DLP-307}{DLP-307} & ≤ 13 mmag &
+10.6 mmag & \href{https://jira.lsstcorp.org/browse/DM-3338}{DM-3338}
+(using i band data)\tabularnewline
+Photometric repeatability (PA1gri) &
+\href{https://jira.lsstcorp.org/browse/DLP-315}{DLP-315} & ≤ 13 mmag &
+10.6 mmag &
+\href{https://jira.lsstcorp.org/browse/DM-3338}{DM-3338}\tabularnewline
+Photometric repeatability (PA1uzy) &
+\href{https://jira.lsstcorp.org/browse/DLP-316}{DLP-316} & ≤ 13 mmag &
+10.6 mmag & \href{https://jira.lsstcorp.org/browse/DM-3338}{DM-3338}
+(using i band data)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsection{Summary of Algorithmic Performance
+Measurements}\label{summary-of-algorithmic-performance-measurements}
+
+\emph{Submitted by \href{file:////display/~swinbank}{John Swinbank}}
+
+\emph{\\
+}The i-band HSC engineering data (described above) was used where
+possible and the same caveats apply. Consult the tickets in the
+Measurement Method column for more details.
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\textbf{Metric Characterised} & \textbf{Metric Ref} & \textbf{Target} &
+\textbf{Measured Value} & \textbf{Measurement Method}\tabularnewline
+\midrule
+\endhead
+Residual PSF Ellipticity Correlations (TE1) &
+\href{https://jira.lsstcorp.org/browse/DLP-290}{DLP-290} & ≤ 5e-3 & 6e-5
+&
+\href{https://jira.lsstcorp.org/browse/DM-3040}{DM-3040}\tabularnewline
+Residual PSF Ellipticity Correlations (TE2) &
+\href{https://jira.lsstcorp.org/browse/DLP-290}{DLP-290} & ≤ 5e-3 & 2e-5
+& \href{https://jira.lsstcorp.org/browse/DM-3047}{DM-3047
+}\tabularnewline
+Relative Astrometry (AM1) &
+\href{https://jira.lsstcorp.org/browse/DLP-310}{DLP-310} & \textless{}
+60 mas & 12.49 mas &
+\href{https://jira.lsstcorp.org/browse/DM-3057}{DM-3057}\tabularnewline
+Relative Astrometry (AM2) &
+\href{https://jira.lsstcorp.org/browse/DLP-311}{DLP-311} & \textless{}
+60 mas & 12.19 mas &
+\href{https://jira.lsstcorp.org/browse/DM-3064}{DM-3064}\tabularnewline
+\bottomrule
+\end{longtable}
+
+~
+
+\subsection{Summary of Computational Performance
+Measurements}\label{summary-of-computational-performance-measurements}
+
+\emph{Submitted by \href{file:////display/~swinbank}{John Swinbank} and
+\href{file:////display/~krughoff}{Simon Krughoff}}
+
+~
+
+At this point of Construction, the computational performance
+measurements are a combination of precursor data processing and
+extrapolation from R\&D assumptions.
+
+DECam/HITS data was used for the OTT1 estimate and for the diffim and
+single-frame measurement of the Alert Production Computational Budget in
+combination with data from the
+\href{https://dev.lsstcorp.org/trac/wiki/DC3bPT1_1}{3rd Data Challenge}.
+
+For the Data Release Production of the computational budget, we used
+DECam/HITS data for estimating diffim performance, HSC-I for assembling
+and measuring coadds and for forced measurement, estimates from FDR for
+multifit, and data from the 3rd Data Challenge for SDQA. Calculations
+for the DRP computational budget used
+\href{https://github.com/lsst-dm/kpm/blob/29c053f7b832e8bd999527e012681826fc0c201c/DLP-314:\%20DRP\%20Computational\%20Budget/LSST\%20DRP\%20Computational\%20Budget.ipynb}{this
+iPython notebook}
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\textbf{Metric Chracterised} & \textbf{Metric Ref} & \textbf{Target} &
+\textbf{Measured Value} & \textbf{Measurement Method}\tabularnewline
+\midrule
+\endhead
+OTT1 & \href{https://jira.lsstcorp.org/browse/DLP-328}{DLP-328} & ≤ 240
+sec & 200-250 sec &
+\href{https://jira.lsstcorp.org/browse/DM-3724}{DM-3724}\tabularnewline
+AP Computational Budget &
+\href{https://jira.lsstcorp.org/browse/DLP-329}{DLP-329} & ≤ 231 TFLOPS
+& 34-39 TFLOPS &
+\href{https://jira.lsstcorp.org/browse/DM-3267}{DM-3267}\tabularnewline
+DRP Computational Budget &
+\href{https://jira.lsstcorp.org/browse/DLP-314}{DLP-314} & ≤ 645 TFLOPS
+& 318 TFLOPS &
+\href{https://jira.lsstcorp.org/browse/DM-3083}{DM-3083}\tabularnewline
+\bottomrule
+\end{longtable}
+
+~
+
+~
